@@ -7,6 +7,12 @@ FROM alpine:edge
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
+
+RUN apk add --no-cache ca-certificates
+RUN apk add --no-cache g++ freetype-dev jpeg-dev
+RUN apk add nodejs 
+RUN apk update
+RUN apk upgrade 
 #
 # Installing Packages
 #
@@ -68,7 +74,7 @@ RUN python3 -m ensurepip \
 #
 # Clone repo and prepare working directory
 #
-RUN git clone -b sql-extended https://github.com/MoveAngel/One4uBot /root/userbot
+RUN git clone https://github.com/rekcahkumar/javes /root/userbot
 RUN mkdir /root/userbot/bin/
 WORKDIR /root/userbot/
 
